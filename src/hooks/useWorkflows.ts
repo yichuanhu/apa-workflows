@@ -10,8 +10,8 @@ export interface Workflow {
   created_at: string;
 }
 
-const API_URL = "http://8.161.186.51/rest/v1/workflows";
-const API_KEY = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJvbGUiOiJhbm9uIiwiaWF0IjoxNzY4Mjk1MDA3LCJleHAiOjEzMjc4OTM1MDA3fQ.EI1f4mdT26L1fTj5-fgq4mCiuhfgDUdOCVFJ8B2koK4";
+const API_URL = "https://zauifbgyiurxvsooutgj.supabase.co/rest/v1/workflows";
+const API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InphdWlmYmd5aXVyeHZzb291dGdqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjgzNjU5MzksImV4cCI6MjA4Mzk0MTkzOX0.w9icEN0WG5ntqQdTUpucYfCw5_sbZ6mEdI6h002pxXU";
 
 // 模拟数据 - 当API请求失败时使用（HTTPS环境下无法访问HTTP API）
 const MOCK_WORKFLOWS: Workflow[] = [
