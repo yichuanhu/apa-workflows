@@ -1,26 +1,24 @@
-import { Search, ChevronDown, User } from "lucide-react";
+import { Search, ChevronDown, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import logo from "@/assets/logo.svg";
 
 const navItems = [
-  { label: "工作流程", hasDropdown: true },
-  { label: "产品", hasDropdown: true },
-  { label: "文档", hasDropdown: false },
-  { label: "社区", hasDropdown: true },
-  { label: "企业版", hasDropdown: true },
-  { label: "定价", hasDropdown: false },
+  { label: "平台", hasDropdown: true },
+  { label: "智能体", hasDropdown: true },
+  { label: "解决方案", hasDropdown: true },
+  { label: "成功案例", hasDropdown: false },
+  { label: "资源中心", hasDropdown: true },
+  { label: "关于我们", hasDropdown: true },
 ];
 
 export const Header = () => {
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full border-b border-border/50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
       <div className="container flex h-16 items-center justify-between">
         {/* Logo */}
-        <div className="flex items-center gap-8">
-          <a href="/" className="flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
-              <span className="text-sm font-bold text-primary-foreground">A</span>
-            </div>
-            <span className="text-lg font-semibold text-foreground">APA</span>
+        <div className="flex items-center gap-10">
+          <a href="/" className="flex items-center">
+            <img src={logo} alt="Laiye" className="h-6" />
           </a>
 
           {/* Navigation */}
@@ -44,24 +42,24 @@ export const Header = () => {
           </button>
           
           <div className="hidden md:flex items-center gap-2 text-sm text-muted-foreground">
-            <span>简体中文</span>
+            <span>中文</span>
             <ChevronDown className="h-3 w-3" />
           </div>
 
+          <div className="hidden lg:flex items-center gap-2 text-sm text-foreground">
+            <Phone className="h-4 w-4" />
+            <span>400-001-8136</span>
+          </div>
+
           <Button 
-            variant="ghost" 
-            className="nav-link text-sm font-medium"
-            onClick={() => {
-              // SSO登录预留
-              console.log("SSO Login clicked");
-            }}
+            variant="outline" 
+            className="text-sm font-medium border-foreground/20 hover:bg-foreground/10"
           >
-            <User className="h-4 w-4 mr-2" />
-            登录
+            联系我们
           </Button>
 
-          <Button className="gradient-button rounded-full px-5 py-2 text-sm">
-            开始使用
+          <Button className="gradient-button rounded-md px-5 py-2 text-sm font-semibold">
+            申请试用
           </Button>
         </div>
       </div>
