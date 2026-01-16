@@ -1,7 +1,7 @@
 import { createClient } from '@supabase/supabase-js';
 import type { Database } from '@/types/workflow';
 
-const SUPABASE_URL = "https://tjm-supabase.laiye.com";
-const SUPABASE_PUBLISHABLE_KEY = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJvbGUiOiJhbm9uIiwiaWF0IjoxNzY4Mjk1MDA3LCJleHAiOjEzMjc4OTM1MDA3fQ.EI1f4mdT26L1fTj5-fgq4mCiuhfgDUdOCVFJ8B2koK4";
+const SUPABASE_URL = "https://zauifbgyiurxvsooutgj.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InphdWlmYmd5aXVyeHZzb291dGdqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjgzNjU5MzksImV4cCI6MjA4Mzk0MTkzOX0.w9icEN0WG5ntqQdTUpucYfCw5_sbZ6mEdI6h002pxXU";
 
 export const supabase = createClient<Database>(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
