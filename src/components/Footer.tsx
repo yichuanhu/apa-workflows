@@ -1,13 +1,13 @@
+import logo from "@/assets/logo.svg";
+
 export const Footer = () => {
   return (
-    <footer className="border-t border-border bg-card/50">
+    <footer className="border-t border-border/50 bg-background">
       <div className="container py-12">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Logo */}
-          <div className="flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
-              <span className="text-sm font-bold text-primary-foreground">A</span>
-            </div>
+          <div className="flex items-center gap-3">
+            <img src={logo} alt="Laiye" className="h-5" />
             <span className="text-lg font-semibold text-foreground">APA工作流程</span>
           </div>
 
@@ -21,7 +21,7 @@ export const Footer = () => {
 
           {/* Copyright */}
           <p className="text-sm text-muted-foreground">
-            © 2026 APA. All rights reserved.
+            © 2026 Laiye. All rights reserved.
           </p>
         </div>
       </div>
