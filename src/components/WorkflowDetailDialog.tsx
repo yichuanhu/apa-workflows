@@ -22,7 +22,13 @@ interface WorkflowDetailDialogProps {
   onOpenChange: (open: boolean) => void;
 }
 
-const STORAGE_BASE_URL = "https://tjm-supabase.laiye.com/storage/v1/object/public/workflows";
+const STORAGE_BASE_URL = "https://zauifbgyiurxvsooutgj.supabase.co/storage/v1/object/public/workflows";
+
+const isImageFile = (path: string): boolean => {
+  const imageExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg', '.bmp'];
+  const lowerPath = path.toLowerCase();
+  return imageExtensions.some(ext => lowerPath.endsWith(ext));
+};
 
 export const WorkflowDetailDialog = ({
   workflow,
@@ -31,9 +37,11 @@ export const WorkflowDetailDialog = ({
 }: WorkflowDetailDialogProps) => {
   if (!workflow) return null;
 
-  const videoUrl = workflow.video_path
+  const mediaUrl = workflow.video_path
     ? `${STORAGE_BASE_URL}/${workflow.video_path}`
     : null;
+
+  const isImage = workflow.video_path ? isImageFile(workflow.video_path) : false;
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -43,17 +51,25 @@ export const WorkflowDetailDialog = ({
         </DialogHeader>
 
         <div className="space-y-6 mt-4">
-          {/* Video Player */}
-          {videoUrl && (
+          {/* Media Display - Video or Image */}
+          {mediaUrl && (
             <div className="rounded-lg overflow-hidden bg-secondary">
-              <video
-                src={videoUrl}
-                controls
-                className="w-full aspect-video"
-                preload="metadata"
-              >
-                您的浏览器不支持视频播放
-              </video>
+              {isImage ? (
+                <img
+                  src={mediaUrl}
+                  alt={workflow.title}
+                  className="w-full max-h-[60vh] object-contain"
+                />
+              ) : (
+                <video
+                  src={mediaUrl}
+                  controls
+                  className="w-full aspect-video"
+                  preload="metadata"
+                >
+                  您的浏览器不支持视频播放
+                </video>
+              )}
             </div>
           )}
 
