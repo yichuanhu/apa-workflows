@@ -18,6 +18,9 @@ export interface Database {
           video_size: number
           markdown_content: string
           is_public: boolean
+          package_path: string | null
+          package_size: number | null
+          package_name: string | null
           created_at: string
           updated_at: string
         }
@@ -29,6 +32,9 @@ export interface Database {
           video_size: number
           markdown_content: string
           is_public?: boolean
+          package_path?: string | null
+          package_size?: number | null
+          package_name?: string | null
           created_at?: string
           updated_at?: string
         }
@@ -40,6 +46,9 @@ export interface Database {
           video_size?: number
           markdown_content?: string
           is_public?: boolean
+          package_path?: string | null
+          package_size?: number | null
+          package_name?: string | null
           created_at?: string
           updated_at?: string
         }

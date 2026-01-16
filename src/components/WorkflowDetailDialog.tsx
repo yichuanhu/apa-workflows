@@ -4,6 +4,8 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Download } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 
 interface Workflow {
@@ -13,6 +15,9 @@ interface Workflow {
   video_path: string;
   video_size: number;
   markdown_content: string;
+  package_path?: string | null;
+  package_size?: number | null;
+  package_name?: string | null;
   created_at: string;
 }
 
@@ -30,6 +35,12 @@ const isImageFile = (path: string): boolean => {
   return imageExtensions.some(ext => lowerPath.endsWith(ext));
 };
 
+const formatFileSize = (bytes: number) => {
+  if (bytes < 1024) return bytes + " B";
+  if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + " KB";
+  return (bytes / (1024 * 1024)).toFixed(1) + " MB";
+};
+
 export const WorkflowDetailDialog = ({
   workflow,
   open,
@@ -42,6 +53,21 @@ export const WorkflowDetailDialog = ({
     : null;
 
   const isImage = workflow.video_path ? isImageFile(workflow.video_path) : false;
+
+  const packageUrl = workflow.package_path
+    ? `${STORAGE_BASE_URL}/${workflow.package_path}`
+    : null;
+
+  const handleDownload = () => {
+    if (packageUrl) {
+      const link = document.createElement('a');
+      link.href = packageUrl;
+      link.download = workflow.package_name || 'workflow-package';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+  };
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -70,6 +96,31 @@ export const WorkflowDetailDialog = ({
                   您的浏览器不支持视频播放
                 </video>
               )}
+            </div>
+          )}
+
+          {/* Download Package Button */}
+          {packageUrl && (
+            <div className="flex items-center justify-between p-4 rounded-lg bg-secondary/50 border border-border">
+              <div className="flex items-center gap-3">
+                <div className="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                  <Download className="h-5 w-5 text-primary" />
+                </div>
+                <div>
+                  <p className="font-medium text-foreground">
+                    {workflow.package_name || '流程包'}
+                  </p>
+                  {workflow.package_size && (
+                    <p className="text-sm text-muted-foreground">
+                      {formatFileSize(workflow.package_size)}
+                    </p>
+                  )}
+                </div>
+              </div>
+              <Button onClick={handleDownload} variant="default" size="sm">
+                <Download className="h-4 w-4 mr-2" />
+                下载流程包
+              </Button>
             </div>
           )}
 
